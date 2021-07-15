@@ -2,18 +2,13 @@
 #Date: 6/20/2021
 #Author: Robert Lyttle
 
+#import libraries
 import numpy as np
-#import cv2
 import os
 import sys
-##import urllib.request
-##import urllib.parse
-##import urllib.robotparser as rb
-##import urllib3.request
 import datetime
 import time
 import glob
-#import avc_audit_v9 as audit
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
@@ -21,27 +16,11 @@ from tkinter import messagebox
 from tkcalendar import Calendar
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 import datetime
-#from tkcalendar import *
-#from PIL import ImageTk,Image
 import threading
-
-
-#import datepicker_time as datepicker
-#import time_converter1 as converter
-#from uncertainties import ufloat
-
-#from mp4file.mp4file import Mp4File
-#import atom.http_core, atom.core
-
-#pip3 install atom
-#pip3 install mp4file
-#pip install urllib
-
-#04/03/21,16:00:35.137
 
 OPTIONS = 0
 METADATA = 5
-PVR_FILE = ' ' #'03082132.pvr'
+PVR_FILE = ' '
 DATE = 0
 DATE2 = 0
 TIME = 0
@@ -53,15 +32,6 @@ BANNER = ' '
 FRAME_NUMBER = 0
 TIME_DELTA = 0
 EXT = '.mp4'
-#VIDEO_TIME = '10:22:00.771'
-#----VIDEO_TIME = '10:11:37.020'
-#VIDEO_TIME = '10:19:38.639'  # 09/03/21
-#VIDEO_TIME ='08:43:16.884'
-#VIDEO_DATE = '09/03/21'
-#---VIDEO_TIME = '08:59:44.325'
-#VIDEO_DATE = '10/03/21'
-#VIDEO_DATE = ' '
-#VIDEO_FILE = 0
 line = 2
 pvr_time = 0
 video_time = 0
@@ -92,11 +62,8 @@ forward = False
 back = False
 button2 = False
 count = 0
-#w = int(((w/width)*100)*width)
-#h = int(((h/height)*100)*height)
-#def start_audit():
-#get files
 
+#get files
 class Debugger1:
         def __init__(self, x,VIDEO_DATE, FILE):
                 self.x = x
@@ -122,7 +89,6 @@ class Debugger1:
                 pass
 
         def command_4(a,b,c,d,e,f,g,h,j,k,frame,font,i):
-                #i sets postion of banner on screen
                 i = int(i)
                 font_size = 0.4
                 cv2.putText(frame,'Date: '+a,(10+i,50),font,font_size,(BLUE,GREEN,RED),1)
@@ -182,11 +148,10 @@ def file0():
 	entry12.insert(END, FILE)
 	print('file: ', FILE)
 
-#converter
+#converter time to seconds
 def converter(converter):
 	t = converter
 	h,m,s = t.split(':')
-	#convert time to seconds
 	convert = float(datetime.timedelta(hours=float(h),minutes=float(m),seconds=float(s)).total_seconds())
 	return convert
 
@@ -199,11 +164,10 @@ def file1():
 	entry1.insert(END, FILE2)
 	print()
 
-
+#Create buttons
 def button_0():
 	global button0
 	button0 = "button0"
-	#Button(window, text="Play", state=DISABLED)
 	def run1():
 		Button(window, text="Button_0", state=DISABLED)
 	thread = threading.Thread(target=run1)
@@ -254,7 +218,6 @@ def button_5():
                 print(button5)
         thread2 = threading.Thread(target=run2)
         thread2.start()
-	#audit.record_live_video()
         
 
 def add_camera():
@@ -266,7 +229,6 @@ def add_camera():
 
 def stop():
 	stop = True
-	#entry1.delete(0, END)
 	entry2.delete(0, END)
 	entry3.delete(0, END)
 	entry4.delete(0, END)
@@ -290,10 +252,8 @@ def exit():
 	window.destroy()
 	
 
-#settings
+#settings tab
 def communication():
-        #window2 = Tk()
-        
         Tabs = Tk()
         Tabs.geometry("400x400")
         Tabs.title("Connection")
@@ -306,10 +266,6 @@ def communication():
         tabControl.add(tab_2, text ='Serial')
         tabControl.pack(expand = 1, fill ="both")
 
-        #window2.geometry("400x400")
-        #####
-        #labels
-        #l1 = Label(window2, text="IP:", bg="white").grid(row=3, column=0, sticky="wne")
         tabControl = ttk.Notebook(tab_1)
         l1 = Label(tab_1, text="Settings ").grid(row=0, column=0, sticky="wn", padx=5)
         l1 = Label(tab_1, text="IP address: ").grid(row=3, column=0, sticky="wn", padx=5)
@@ -328,7 +284,7 @@ def communication():
         l5 = Label(tab_2, text="Port: ").grid(row=7, column=0, sticky="wn", padx=5)
         l6 = Label(tab_2, text="N/A: ").grid(row=8, column=0, sticky="wn", padx=5)
         
-        #entry
+        #creat entry boxes
         s1 = Entry(tab_1, width=20)
         s2 = Entry(tab_1, width=20)
         s3 = Entry(tab_1, width=20)
@@ -342,10 +298,8 @@ def communication():
         s10 = Entry(tab_2, width=20)
         s11 = Entry(tab_2, width=20)
         s12 = Entry(tab_2, width=20)
-        #s7.delete(0, END)
-        #s7.insert(END, "1")
 
-        #button
+        #create buttons
         Button(tab_1, text="+").grid(row=9, column=1, sticky="wne")
         Button(tab_1, text="-").grid(row=10, column=1, sticky="wne")
         Button(tab_1, text="Setting_3").grid(row=11, column=1, sticky="wne")
@@ -372,7 +326,7 @@ def communication():
         Button(tab_2, text="Submit", command=submit).grid(row=13, column=1, sticky="wne")
         Button(tab_2, text="Exit", command=kill_set).grid(row=14, column=1, sticky="wne")
 
-        #entry
+        #show entry boxes on screen
         s1.grid(row=3, column=1, sticky="wne")
         s2.grid(row=4, column=1, sticky="wne")
         s3.grid(row=5, column=1, sticky="wne")
@@ -386,8 +340,6 @@ def communication():
         s10.grid(row=6, column=1, sticky="wne")
         s11.grid(row=7, column=1, sticky="wne")
         s12.grid(row=8, column=1, sticky="wne")
-        #e1.delete(0, END)
-        #e1.insert(END, message)
         Tabs.mainloop()
 
 
@@ -400,7 +352,7 @@ def settings_menu():
 
 
 def set_date():
-	# Create Object
+	# Create Calendar Object
 	root = Tk()
 
 	# Set geometry
@@ -410,10 +362,8 @@ def set_date():
 	# Add Calender
 	cal = Calendar(root, selectmode = 'day', year = 2020, month = 5, day = 22)
 	cal.pack(pady = 20)
-	#date.config(text = "Selected Date is: " + cal.get_date())
 	def grad_date():
 		date.config(text = 'Selected date is: ' + cal.get_date())
-		#print('Date: ',cal.get_date())
 		video_date = cal.get_date()
 		month, day, year = video_date.split('/')
 		global VIDEO_DATE
@@ -433,8 +383,7 @@ def set_date():
 	# Excecute Tkinter
 	root.mainloop()
 
-
-        #window2 = Tk()
+#main screen
 window_tabs = Tk()
 window_tabs.geometry("800x800")
 window_tabs.title("Debugger1")
@@ -446,55 +395,25 @@ window_1 = ttk.Frame(tabControl)
 tabControl.add(window, text ='Sensor')
 tabControl.add(window_1, text ='Diagnostics')
 tabControl.pack(expand = 1, fill ="both")
-#window = Tk()
-#window.title("Debugger1")
-#window.geometry("1000x1000")
-#window.rowconfigure(0, minsize=800, weight=1)
-#window.columnconfigure(0, minsize=800, weight=1)
-#my_img1 = ImageTk.PhotoImage(Image.open('/DATA/camera_1/2020_12_06/test.png'))
-#my_img1 = ImageTk.PhotoImage(Image.open(get_frame))
-#labels
-#my_label Label(image=my_img1[frame_number])
-var = StringVar()
-#my_label = Label(window, textvariable=var, relief=RAISED )
-#my_label = Label(window, text='Images')
-#my_label1 = Label(window, textvariable=var, bg="white")
-#my_label2 = Label(window, text="test liner", bg="white")
-#my_label.grid_forget()
-
-#Debug
-#labelText=StringVar()
-#labelText.set("Enter directory of log files")
-#labelDir=Label(window, textvariable=labelText, height=4)
-#labelDir.grid(row=0,column=0)
-
-#var = StringVar()
-#label = Label( root, textvariable=var, relief=RAISED )
-#var.set('Image')
-#var.set("Hey!? How are you doing?")
-#label.pack()
-#root.mainloop()
-#txt_edit = tk.Text(window)
 
 #entry box
 #window = Frame(window, relief=RAISED, bd=2)
-entry = Entry(window, width=10)  #Date
-entry1 = Entry(window, width=100) #camera path
-entry2 = Entry(window, width=10) #next frame
-entry3 = Entry(window, width=10) #current frame
-entry4 = Entry(window, width=10) #pvr line number
-entry5 = Entry(window, width=10) #lane number
-entry6 = Entry(window, width=10) #speed
-entry7 = Entry(window, width=10) #direction
-entry8 = Entry(window, width=10) #
+entry = Entry(window, width=10)
+entry1 = Entry(window, width=100)
+entry2 = Entry(window, width=10)
+entry3 = Entry(window, width=10)
+entry4 = Entry(window, width=10)
+entry5 = Entry(window, width=10)
+entry6 = Entry(window, width=10) 
+entry7 = Entry(window, width=10) 
+entry8 = Entry(window, width=10) 
 entry9 = Entry(window, width=10)
 entry10 = Entry(window, width=10)
 entry11 = Entry(window, width=10)
-entry12 = Entry(window, width=10) #PVR_FILE
+entry12 = Entry(window, width=10)
 entry13 = Entry(window, width=10)
 entry14 = Entry(window, width=10)
-entry15 = Entry(window, width=10) #PVR_FILE
-
+entry15 = Entry(window, width=10)
 
 #buttons
 btn_file1 = Button(window, text="Import video", command=file1).grid(row=2, column=0, sticky="ew", padx=5)
@@ -514,7 +433,6 @@ btn_13 = Button(window, text="Button_13", command=button_5).grid(row=15, column=
 btn_14 = Button(window, text="Button_14", command=button_5).grid(row=16, column=0, sticky="ew", padx=5)
 btn_14 = Button(window, text="Button_15", command=button_5).grid(row=17, column=0, sticky="ew", padx=5)
 btn_stop = Button(window, text="Stop", command=stop).grid(row=22, column=0, sticky="ew", padx=5)
-#btn_set_date = tk.Button(fr_buttons, text = "Set Date", command = set_date)
 
 
 #settings button
@@ -533,8 +451,6 @@ btn_set_12 = Button(window, text="+", command=settings_menu).grid(row=14, column
 btn_set_13 = Button(window, text="+", command=settings_menu).grid(row=15, column=3, sticky="ew", padx=5)
 btn_set_14 = Button(window, text="+", command=settings_menu).grid(row=16, column=3, sticky="ew", padx=5)
 btn_set_15 = Button(window, text="+", command=settings_menu).grid(row=17, column=3, sticky="ew", padx=5)
-
-
 btn_set_date = Button(window, text = "Select Date", command = set_date).grid(row=18, column=0, sticky="ew", padx=5) #.pack(pady = 20)
 btn_file0 = Button(window, text="Import file", command=file0).grid(row=19, column=0, sticky="ew", padx=5)
 btn_add_camera = Button(window, text="Add Camera", command=add_camera).grid(row=20, column=0, sticky="ew", padx=5)
@@ -559,7 +475,7 @@ l1 = Label(window, text="14: ").grid(row=16, column=1, sticky="wn", padx=5)
 l1 = Label(window, text="15: ").grid(row=17, column=1, sticky="wn", padx=5)
 
 
-#entry box
+#show entry box
 entry.grid(row=3, column=2, sticky="wne", padx=5)
 entry1.grid(row=4, column=2, sticky="wne", padx=5)
 entry2.grid(row=5, column=2, sticky="wne", padx=5)
@@ -576,16 +492,6 @@ entry12.grid(row=15, column=2, sticky="wne", padx=5)
 entry13.grid(row=16, column=2, sticky="wne", padx=5)
 entry14.grid(row=17, column=2, sticky="wne", padx=5)
 entry15.grid(row=18, column=2, sticky="wne", padx=5)
-#labels
-#my_label.grid(row=0, column=1, sticky="ne")
-#my_label1.forget()
-#my_label1.grid(row=20, column=1, sticky="wne", padx=5)
-#my_label2.grid(row=21, column=1, sticky="wne", padx=5)
-#text_box.grid(row=2, column=5, sticky="ew", padx=5, pady=5)
 
 #create window
 window_tabs.mainloop()
-
-#if __name__ == "__main__":
-	# execute only if run as a script
-#	main()
